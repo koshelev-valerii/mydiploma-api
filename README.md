@@ -8,7 +8,7 @@
 
 ## Where you can find me?
 
-`84.201.154.219` (ip)
+`84.201.136.161` (ip)
 
 
 `https://api.mydiploma.website/` (domain for back part)
