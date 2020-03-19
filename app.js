@@ -7,6 +7,7 @@ const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const { errors } = require('celebrate');
+const { limiter } = require('./limiter/rate-limit');
 const { login, createUser } = require('./controllers/users');
 const auth = require('./middlewares');
 const { SERVER_PORT, DB } = require('./configs/config');
@@ -23,6 +24,7 @@ mongoose.connect(DB, {
   useUnifiedTopology: true,
 }, () => console.log(`DB was connected with url ${DB}`));
 
+app.use(limiter);
 app.use(requestLogger);
 app.use(cors());
 app.use(helmet());
