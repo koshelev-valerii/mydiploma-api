@@ -8,12 +8,8 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const { errors } = require('celebrate');
 const { limiter } = require('./limiter/rate-limit');
-const { login, createUser } = require('./controllers/users');
-const auth = require('./middlewares');
 const { SERVER_PORT, DB } = require('./configs/config');
 const errorHandler = require('./middlewares/error-handler');
-const celebrateLogin = require('./middlewares/celebrate-login');
-const celebrateAddUser = require('./middlewares/celebrate-add-user');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const routes = require('./routes');
 
@@ -32,10 +28,6 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.post('/signin', celebrateLogin, login);
-app.post('/signup', celebrateAddUser, createUser);
-
-app.use(auth);
 app.use(routes);
 app.use(errors());
 app.use(errorLogger);
