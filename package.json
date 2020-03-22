@@ -1,0 +1,44 @@
+{
+  "name": "mydiploma-api",
+  "version": "0.2.0",
+  "description": "The package is a Yandex Praktikum project that contains the implementation of the backend part of the my diploma",
+  "main": "app.js",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "celebrate": "^12.0.1",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-rate-limit": "^5.1.1",
+    "express-winston": "^4.0.3",
+    "helmet": "^3.21.3",
+    "joi-objectid": "^3.0.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.5",
+    "typescript": "^3.8.3",
+    "validator": "^12.2.0",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.1",
+    "nodemon": "^2.0.2"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/koshelev-valerii/mydiploma-api.git"
+  },
+  "author": "Valerii Koshelev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/koshelev-valerii/mydiploma-api/issues"
+  },
+  "homepage": "https://github.com/koshelev-valerii/mydiploma-api#readme"
+}
