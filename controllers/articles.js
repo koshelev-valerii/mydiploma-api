@@ -47,7 +47,7 @@ module.exports.deleteArticle = (req, res, next) => {
       } return articles;
     })
     .then((articles) => {
-      if (!(articles.owner == user)) {
+      if (!(articles.owner.toString() === user)) {
         throw new ForbiddenError(NOT_OWNER);
       }
 

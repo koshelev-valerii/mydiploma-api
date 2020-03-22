@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
-const { USER_NOT_FOUND } = require('../configs/constants');
-const { NotFoundError } = require('../errors');
+const { USER_NOT_FOUND, USER_HAS_REGISTERED } = require('../configs/constants');
+const { NotFoundError, BadRequestError } = require('../errors');
 const User = require('../models/user');
 const { SECRET_STRING } = require('../configs/config');
 
@@ -36,25 +36,36 @@ module.exports.createUser = (req, res, next) => {
     name,
   } = req.body;
 
-  return User.create({
-    email,
-    password,
-    name,
-  })
-    .then((users) => {
-      users.password = '********';
-      res.send({ data: users });
+  return User.findOne({ email })
+    .then((user) => {
+      if (!user) {
+        return User.create({
+          email,
+          password,
+          name,
+        })
+          .then((users) => {
+            const NewUser = users;
+            NewUser.password = '********';
+            res.send({ data: users });
+          })
+          .catch(next);
+      }
+      throw new BadRequestError(USER_HAS_REGISTERED);
     })
     .catch(next);
 };
 
-module.exports.getUser = (req, res, next) => {
-  User.find({})
+
+module.exports.getUserById = (req, res, next) => {
+  User.findById(req.user._id)
+    .select('-_id')
+    .select('-password')
+    .select('-__v')
     .then((users) => {
       if (!users) {
         throw new NotFoundError(USER_NOT_FOUND);
       }
-      users.password = '********';
       res.send({ data: users });
     })
     .catch(next);
