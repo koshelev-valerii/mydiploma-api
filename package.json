@@ -1,6 +1,6 @@
 {
   "name": "mydiploma-api",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "The package is a Yandex Praktikum project that contains the implementation of the backend part of the my diploma",
   "main": "app.js",
   "dependencies": {
