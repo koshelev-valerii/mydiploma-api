@@ -3,9 +3,6 @@
   "rules": {
     "no-console": "off",
     "func-names": "off",
-    "eqeqeq": "off",
-    "no-param-reassign": "off",
-    "no-unused-vars": "off",
     "linebreak-style": 0,
     "no-underscore-dangle": [
       "error",
