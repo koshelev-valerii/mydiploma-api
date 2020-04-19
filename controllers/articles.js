@@ -8,10 +8,18 @@ module.exports.getArticles = (req, res, next) => {
   const user = req.user._id;
 
   Articles.find({})
+    .select('+owner')
     .then((articles) => {
-      if ((articles.owner.toString() === user)) {
-        res.send({ data: articles });
-      }
+      if (!articles) {
+        throw new NotFoundError(ARTICLE_NOT_FOUND);
+      } return articles;
+    })
+    .then((articles) => {
+      articles.forEach((elem) => {
+        if (elem.owner.toString() === user) {
+          res.send({ data: articles });
+        }
+      });
     })
     .catch(next);
 };
