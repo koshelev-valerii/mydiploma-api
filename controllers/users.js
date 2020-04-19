@@ -65,7 +65,7 @@ module.exports.getUserById = (req, res, next) => {
       if (!users) {
         throw new NotFoundError(USER_NOT_FOUND);
       }
-      res.send({ data: users }, users._id);
+      res.send({ data: users });
     })
     .catch(next);
 };
