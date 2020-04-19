@@ -59,7 +59,6 @@ module.exports.createUser = (req, res, next) => {
 
 module.exports.getUserById = (req, res, next) => {
   User.findById(req.user._id)
-    .select('-_id')
     .select('-password')
     .select('-__v')
     .then((users) => {
