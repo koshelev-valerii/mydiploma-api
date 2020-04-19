@@ -3,9 +3,16 @@ const { ARTICLE_NOT_FOUND, NOT_OWNER } = require('../configs/constants');
 
 const Articles = require('../models/article');
 
+
 module.exports.getArticles = (req, res, next) => {
+  const user = req.user._id;
+
   Articles.find({})
-    .then((articles) => res.send({ data: articles }))
+    .then((articles) => {
+      if ((articles.owner.toString() === user)) {
+        res.send({ data: articles });
+      }
+    })
     .catch(next);
 };
 
