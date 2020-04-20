@@ -15,11 +15,14 @@ module.exports.getArticles = (req, res, next) => {
       } return articles;
     })
     .then((articles) => {
+      const arr = [];
       articles.forEach((elem) => {
         if (elem.owner.toString() === user) {
-          res.send({ data: articles });
+          arr.push(elem);
         }
       });
+
+      res.send(arr);
     })
     .catch(next);
 };
